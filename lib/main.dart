@@ -1,100 +1,181 @@
-import 'package:example_project/login_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter/widgets.dart';
+// life cycle of an app
+// 1.MyApp
+// 2.MaterialApp
+// 3. variable home inside MaterialApp(screen Which you want to run at)
+// 4.Scaffold
 void main() {
+  //runApp  is a function that initializes the Flutter framework and inflates the given widget to the screen.
+  // It's the entry point for any Flutter application and is typically used in the main() function of your Dart code.
+  // runApp function take an widget
   runApp(MyApp());
 }
-
+//Widget It is divided into two types 1.StatelessWidget ,2.StatefulWidget
+//Here MyApp extends StatelessWidget that mean  MyApp is  Widget
+//StatelessWidget We use it when we want to have a fixed interface without any interactions
+// StatefulWidget We use it when we want to have an interface that has interactions such as a counter
 class MyApp extends StatelessWidget {
+// Widget build is abstract in class StatelessWidget So you should override it
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'StatefulWidget Lifecycle Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      initialRoute: '/home',
-      routes: {
-        '/home':(context)=>HomeScreen(),
-        '/login':(context)=>LoginScreen(),
-      },
-      home: HomeScreen(),
+      debugShowCheckedModeBanner: false,
+      home: LoginPage(),
     );
   }
 }
 
-class HomeScreen extends StatefulWidget {
+class LoginPage extends StatefulWidget {
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  State<LoginPage> createState() => _LoginPageState();
 }
-int counter = 0;
 
-class _HomeScreenState extends State<HomeScreen> {
-  String _message = "Welcome!";
-
-  @override
+class _LoginPageState extends State<LoginPage> {
+  int count=0;
+@override
   void initState() {
+    // TODO: implement initState
+  print("omar");
     super.initState();
+  }
+  void add(){
+    setState(() {
+      count++;
+      print(count);
+    });
 
-    print("HomeScreen: initState");
-    // Initialization code, e.g., setting up a timer or fetching data
-    _message = "Counter initialized!";
   }
 
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    _message="omar";
-    print("message: ${_message}");
-    // This method is called when dependencies change, e.g., if you use InheritedWidget
+  void mins(){
+    setState(() {
+      count--;
+
+      print(count);
+
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    print("HomeScreen: build");
+    // TODO: implement build
     return Scaffold(
-      floatingActionButton: FloatingActionButton(onPressed: (){
-        Navigator.pushReplacementNamed(context, '/login');
+// floatingActionButton: FloatingActionButton(onPressed: () {
+//   print("object");
+// },child: Text("o"),),
+//       bottomNavigationBar: BottomNavigationBar(
+//
+//        items: [
+//         BottomNavigationBarItem(icon: Icon(Icons.access_time_filled_sharp),label: "omar"),
+//         BottomNavigationBarItem(icon: Icon(Icons.access_time_filled_sharp),label: "omar"),
+//         BottomNavigationBarItem(icon: Icon(Icons.access_time_filled_sharp),label: "omar"),
+//         BottomNavigationBarItem(icon: Icon(Icons.access_time_filled_sharp),label: "omar"),
+//
+//       ],),
+// appBar: AppBar(
+//   toolbarHeight: 50,
+//   backgroundColor: Colors.blue,
+//   leading: Icon(Icons.access_time_filled_sharp,color: Colors.cyanAccent,),
+//   actions: [
+//     Icon(Icons.cached,color: Colors.black,size: 40,),
+//   ],
+//   title: Text("Login Page",style:TextStyle(
+//     fontSize: 40,
+//     color: Colors.cyanAccent,
+//   ) ,),
+// ),
 
-      },child: Icon(Icons.add),),
-      appBar: AppBar(
-        title: Text('StatefulWidget Lifecycle'),
-      ),
-      body: Center(
+//   body: Center(
+//     child: Text("omar",style: TextStyle(
+//       fontSize: 20,
+//       color: Colors.cyan,
+//     ),),
+//   ),
+      //
+//     body: Center(
+//       child: Container(
+//         height: 50,
+//         width: 60,
+//         color: Colors.orange,
+//         child: const Center(child: Text("OMAR")
+//         ),
+//       ),
+//     ),
+      //
+//       body: Container(
+// width: double.infinity,
+//         child: Column(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           crossAxisAlignment: CrossAxisAlignment.center,
+//           children: [
+//             Text("data"),
+//             SizedBox(child: Container(
+//               width: double.infinity,
+//               height: 1,
+//               color: Colors.red,
+//             ),),
+//             // Spacer(),
+//             Text("data"),
+//
+//           ],
+//         ),
+//       ),
+//     body: Center(
+//       child: Row(
+//         children: [
+//           Text("omar"),
+//           Container(width: 50,height: 50,color: Colors.red,),
+//           Spacer(),
+//           Text("omar"),
+//           SizedBox(width: 50,),
+//           Text("omar"),
+//           SizedBox(width: 50,),
+//
+//           Text("omar"),
+//
+//         ],
+//       ),
+//     ),
+      body: Container(
+        width: double.infinity,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              _message,
-              style: TextStyle(fontSize: 24),
-            ),
-            SizedBox(height: 20),
-            Text(
-              'Counter: $counter',
-              style: TextStyle(fontSize: 48),
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            // Container(
+            //     height: 100,
+            //     width: 100,
+            //     decoration: BoxDecoration(
+            //       borderRadius: BorderRadius.only(
+            //           topRight: Radius.circular(10),
+            //           topLeft: Radius.circular(10)),
+            //       color: Colors.red,
+            //     )),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+GestureDetector(onTap: (){
+  add();
 
-                setState(() {
-                  counter++;
-                  _message = "Counter incremented!";
-                });
-              },
-              child: Text('Increment Counter'),
+},child: Container(width: 50,height: 50,color: Colors.red,child: Icon(Icons.add),)),
+                SizedBox(width: 30,),
+
+                Text("count: $count"),
+                SizedBox(width: 30,),
+
+
+                GestureDetector(onTap: (){
+
+mins();
+                },child: Container(width: 50,height: 50,color: Colors.blue,child: Icon(Icons.minimize_sharp),)),
+
+              ],
             ),
           ],
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    print("HomeScreen: dispose");
-    super.dispose();  // Important to call this method to clean up resources
-
-    // Cleanup code, e.g., cancelling timers or disposing of controllers
   }
 }
