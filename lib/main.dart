@@ -1,5 +1,9 @@
+import 'package:example_project/PageFour.dart';
+import 'package:example_project/PageThree.dart';
 import 'package:example_project/counter_stateful_widget.dart';
 import 'package:example_project/counter_stateless_widget.dart';
+import 'package:example_project/pageOne.dart';
+import 'package:example_project/pageTwo.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -28,7 +32,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: true,
       //debugShowCheckedModeBanner is a variable inside MaterialApp that takes the value of bool and its function is to remove a red bar.
 
-      home: CounterStatefulWidget(),
+      home: PageFour(),
       // home take an widget
     );
   }
@@ -40,6 +44,17 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     // Scaffold It is the frame of the page in which we put everything
     return Scaffold(
+
+      bottomNavigationBar: BottomNavigationBar(
+        // type: BottomNavigationBarType.fixed , // This is all you need!
+
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.add),label: "omar"),
+          BottomNavigationBarItem(icon: Icon(Icons.add),label: "as"),
+          BottomNavigationBarItem(icon: Icon(Icons.add),label: "omar"),
+
+        ],
+      ),
       floatingActionButton: FloatingActionButton(
         //floatingActionButton is a Scaffold widget property used to add a Floating Action Button to the user interface. A floating button is a user interface element that can perform a specific action when pressed, usually used to provide quick access to an important action.
 
